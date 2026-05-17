@@ -1,6 +1,6 @@
 import * as ort from "onnxruntime-web";
 
-const SIZE = 280;
+const SIZE = 560;
 
 type PredictionCallback = (p: number[]) => void;
 
@@ -34,9 +34,12 @@ export class DigitEngine {
       executionProviders: ["wasm"],
     });
 
+    console.log("SESSION input names  ", this.session.inputNames);
+    console.log("SESSION nput metadata", this.session.inputMetadata);
+
     this.inputName = this.session.inputNames[0];
 
-    this.drawIntro();
+    // this.drawIntro();
   }
 
   // ------------------------
@@ -91,7 +94,7 @@ export class DigitEngine {
 
   public clear = () => {
     this.ctx.clearRect(0, 0, SIZE, SIZE);
-    this.drawIntro();
+    // this.drawIntro();
     this.onPredictions?.(Array(10).fill(0));
   };
 
@@ -114,17 +117,23 @@ export class DigitEngine {
     if (!this.session) return;
 
     const imgData = this.ctx.getImageData(0, 0, SIZE, SIZE);
-    const { data } = imgData;
+    const data = imgData.data;
 
-    // Convert RGBA -> grayscale using alpha channel (best for canvas ink)
-    const grayscale = new Float32Array(SIZE * SIZE);
+    // Convert RGBA → grayscale
+    const flat = new Float32Array(SIZE * SIZE);
 
     for (let i = 0; i < SIZE * SIZE; i++) {
-      const alpha = data[i * 4 + 3]; // use alpha channel
-      grayscale[i] = alpha / 255;
+      const r = data[i * 4];
+      const g = data[i * 4 + 1];
+      const b = data[i * 4 + 2];
+
+      // simple grayscale
+      // flat[i] = (r + g + b) / (3 * 255);  // OG was this one
+      flat[i] = 1 - (r + g + b) / (3 * 255);
     }
 
-    const tensor = new ort.Tensor("float32", grayscale, [1, 1, SIZE, SIZE]);
+    // IMPORTANT: model expects FULL SIZE IMAGE FLATTENED
+    const tensor = new ort.Tensor("float32", flat, [SIZE * SIZE]);
 
     const output = await this.session.run({
       [this.inputName]: tensor,

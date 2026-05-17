@@ -23,9 +23,9 @@ export default function DigitCanvasUI({
   const toXY = (e: React.MouseEvent<HTMLCanvasElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
 
-    // IMPORTANT: convert to 280x280 space
-    const scaleX = 280 / rect.width;
-    const scaleY = 280 / rect.height;
+    // IMPORTANT: convert to 560x560 space
+    const scaleX = 560 / rect.width;
+    const scaleY = 560 / rect.height;
 
     return {
       x: (e.clientX - rect.left) * scaleX,
@@ -39,8 +39,8 @@ export default function DigitCanvasUI({
       <div>
         <canvas
           ref={canvasRef}
-          width={280}
-          height={280}
+          width={560}
+          height={560}
           style={{ border: "1px solid black" }}
           onMouseDown={(e) => {
             const { x, y } = toXY(e);
