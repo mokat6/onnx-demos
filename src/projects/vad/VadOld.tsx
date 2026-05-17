@@ -16,7 +16,7 @@ export default function VadOld() {
       //
       // 1. Configure ONNX Runtime
       //
-      ort.env.wasm.wasmPaths = "/onnx/";
+      ort.env.wasm.wasmPaths = `${import.meta.env.BASE_URL}onnx/`;
       ort.env.wasm.numThreads = 1; // for now, safest option!!!!!!!!!!!!!!!
       ort.env.wasm.proxy = false;
       ort.env.wasm.simd = true;
@@ -27,7 +27,7 @@ export default function VadOld() {
       // Example:
       // /public/silero_vad.onnx
       //
-      const session = await ort.InferenceSession.create("/silero_vad.onnx", {
+      const session = await ort.InferenceSession.create(`${import.meta.env.BASE_URL}silero_vad.onnx`, {
         executionProviders: ["wasm"],
       });
 

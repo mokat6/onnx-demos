@@ -13,7 +13,7 @@ export default function DigitDraw() {
     const engine = new DigitEngine(canvasRef.current, (p) => setPredictions(p));
 
     engineRef.current = engine;
-    engine.init("/digit-draw/onnx_model.onnx");
+    engine.init(`${import.meta.env.BASE_URL}digit-draw/onnx_model.onnx`);
 
     return () => {
       engineRef.current = null;

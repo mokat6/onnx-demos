@@ -25,7 +25,7 @@ export class DigitEngine {
   }
 
   async init(modelUrl: string) {
-    ort.env.wasm.wasmPaths = "/onnx/";
+    ort.env.wasm.wasmPaths = `${import.meta.env.BASE_URL}onnx/`;
     // creates session. Expensive. done once. runs on wasm
     this.session = await ort.InferenceSession.create(modelUrl, {
       executionProviders: ["wasm"],
