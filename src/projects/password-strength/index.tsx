@@ -30,8 +30,8 @@ const PasswordStrength = () => {
     }
 
     (async () => {
-      ort.env.wasmPaths = "/onnx/";
-      session = await ort.InferenceSession.create("password/password_strength_cnn.onnx", {
+      ort.env.wasmPaths = `${import.meta.env.BASE_URL}/onnx/`;
+      session = await ort.InferenceSession.create(`${import.meta.env.BASE_URL}password/password_strength_cnn.onnx`, {
         executionProviders: ["wasm"],
       });
     })();
