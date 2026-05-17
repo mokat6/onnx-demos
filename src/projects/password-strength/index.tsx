@@ -18,6 +18,8 @@ function encodePassword(password: string) {
 
 let session = null;
 
+console.log("URL of onnx >> ", `${import.meta.env.BASE_URL}password/password_strength_cnn.onnx`);
+
 const PasswordStrength = () => {
   const [prediction, setPrediction] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
