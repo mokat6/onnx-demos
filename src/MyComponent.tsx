@@ -106,7 +106,7 @@ export default function MyComponent() {
             state,
             sr,
           });
-
+          console.log("session result >> ", result);
           //
           // Output probability
           //
@@ -114,7 +114,7 @@ export default function MyComponent() {
           // output => speech probability
           //
           const output = result.output.data as Float32Array;
-
+          console.log("output  >> ", output);
           //
           // Next recurrent state
           //
