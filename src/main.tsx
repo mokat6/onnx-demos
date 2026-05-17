@@ -5,13 +5,14 @@ import VadOld from "./projects/vad/VadOld";
 import DigitDraw from "./projects/digit-draw";
 import "./index.css";
 import PasswordStrength from "./projects/password-strength";
+import SignLanguage from "./projects/sign-language-letters";
 
 export const Nav = () => {
   console.log("import.meta.env.BASE_URL >> ", import.meta.env.BASE_URL);
 
   return (
     <div>
-      {["digit-draw", "vad-old", "password-strength"].map((itm) => (
+      {["digit-draw", "vad-old", "password-strength", "sign-language"].map((itm) => (
         <div key={itm}>
           <Link to={itm}>{itm}</Link>
         </div>
@@ -40,6 +41,10 @@ const router = createBrowserRouter(
     {
       path: "/password-strength",
       element: <PasswordStrength />,
+    },
+    {
+      path: "/sign-language",
+      element: <SignLanguage />,
     },
   ],
   {
