@@ -21,24 +21,29 @@ export const Nav = () => {
   );
 };
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <Nav />,
+    },
+    {
+      path: "/digit-draw",
+      element: <DigitDraw />,
+    },
+    {
+      path: "/vad-old",
+      element: <VadOld />,
+    },
+    {
+      path: "/password-strength",
+      element: <PasswordStrength />,
+    },
+  ],
   {
-    path: "/",
-    element: <Nav />,
+    basename: import.meta.env.BASE_URL,
   },
-  {
-    path: "/digit-draw",
-    element: <DigitDraw />,
-  },
-  {
-    path: "/vad-old",
-    element: <VadOld />,
-  },
-  {
-    path: "/password-strength",
-    element: <PasswordStrength />,
-  },
-]);
+);
 
 const root = document.getElementById("root");
 
