@@ -7,6 +7,8 @@ import "./index.css";
 import PasswordStrength from "./projects/password-strength";
 
 export const Nav = () => {
+  console.log("import.meta.env.BASE_URL >> ", import.meta.env.BASE_URL);
+
   return (
     <div>
       {["digit-draw", "vad-old", "password-strength"].map((itm) => (
@@ -44,6 +46,8 @@ const router = createBrowserRouter(
     basename: import.meta.env.BASE_URL.replace(/\/$/, ""),
   },
 );
+
+console.log("import.meta.env.BASE_URL >> ", import.meta.env.BASE_URL);
 
 const root = document.getElementById("root");
 
