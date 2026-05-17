@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import * as ort from "onnxruntime-web";
 
-export default function MyComponent() {
+export default function VadOld() {
   const [isSpeech, setIsSpeech] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -164,13 +164,15 @@ export default function MyComponent() {
   }, []);
 
   return (
-    <div className="flex items-center justify-center p-20">
-      <div
-        className="h-40 w-40 rounded-xl transition-colors"
-        style={{
-          backgroundColor: loading ? "gray" : isSpeech ? "limegreen" : "crimson",
-        }}
-      />
-    </div>
+    <>
+      <div className="flex items-center justify-center p-20 min-h-screen  border-2 border-red-500">
+        <div
+          className="h-40 w-40 rounded-xl transition-colors border absolute"
+          style={{
+            backgroundColor: loading ? "gray" : isSpeech ? "limegreen" : "crimson",
+          }}
+        />
+      </div>
+    </>
   );
 }
