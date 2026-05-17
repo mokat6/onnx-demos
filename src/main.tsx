@@ -7,11 +7,18 @@ import "./index.css";
 import PasswordStrength from "./projects/password-strength";
 
 export const Nav = () => {
-  return ["digit-draw", "vad-old", "password-strength"].map((itm) => (
+  return (
     <div>
-      <Link to={itm}>{itm}</Link>
+      {["digit-draw", "vad-old", "password-strength"].map((itm) => (
+        <div key={itm}>
+          <Link to={itm}>{itm}</Link>
+        </div>
+      ))}
+      <p className="mt-24!">
+        <a href="https://netron.app/">https://netron.app/</a> to inspect annx model inputs and outputs and internals
+      </p>
     </div>
-  ));
+  );
 };
 
 const router = createBrowserRouter([
